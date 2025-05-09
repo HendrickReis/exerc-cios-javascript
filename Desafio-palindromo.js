@@ -1,23 +1,24 @@
-let req = String(prompt("insira: "))
-
-function clearSpace(string) {
-    let array = []
-    for (let i = 0; i <= string.length - 1; i++) {
-        if (string[i] != " ") {
-            array.push(string[i])
-        }
+function filtrarString(param) {
+    let res = [], invalidCharacters = [' ', '/', ',', '.', ';'] // não leve a sério, é só uma sequência verificativa, o importante mesmo é o espaço
+    
+    for (let x of param) {
+        if (!invalidCharacters.includes(x)) {
+         res.push(x)
+        }  
     }
-    return array.join('');
+    return res.join('');
 }
 
-function ehpalindromo(string) {
-    for (let x = 0; x <= string.length - 1; x++) {
-        let c = x;
-            if (string[x].toLowerCase() !== string[(string.length - 1 - c)].toLowerCase()) {
-                return false
+function isAnagram(param) {
+    let arrayString = param.toLowerCase().split('')
+    
+    for (let x = 0; x <= arrayString.length - 1; x++) {
+        if (arrayString[x] !== (arrayString[arrayString.length - x - 1])) {
+            return false
         }
     }
     return true;
 }
 
-console.log(ehpalindromo(clearSpace(req)))
+req = String(prompt("Insira uma palavra: "))
+console.log(isAnagram(filtrarString(req)))
