@@ -1,5 +1,5 @@
-var N, H, aux;
-var line=[], table=[], values=[];
+var N, H;
+var line=[], table=[], values=[], aux=[];
 
 N = Number(prompt())
 
@@ -7,8 +7,11 @@ for (let x = 0; x < N; x++) {
     values[x] = Number(prompt())
 }
 
-values.sort((a, b) => a - b)
-H = values[values.length - 1]
+for (let a = 0; a < values.length; a++) {
+    aux.push(values[a])
+}
+
+H = values.sort((a, b) => a - b)[values.length - 1]
 
 for (let x = 0; x < H; x++) {
     line = []
@@ -19,7 +22,7 @@ for (let x = 0; x < H; x++) {
 }
 
 for (let x = 0; x < N; x++) {
-    for (let y = 0; y < values[x]; y++) {
+    for (let y = 0; y < aux[x]; y++) {
         table[H - 1 - y][x] = 1;
     }
 }
